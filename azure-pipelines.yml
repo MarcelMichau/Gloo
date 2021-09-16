@@ -19,7 +19,7 @@ steps:
     packageType: "sdk"
     useGlobalJson: true
     
-- script: dotnet build --configuration $(buildConfiguration)
+- script: dotnet build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
   displayName: 'dotnet build $(buildConfiguration)'
 
 - task: NuGetCommand@2
