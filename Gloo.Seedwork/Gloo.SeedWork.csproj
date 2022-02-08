@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/MarcelMichau/Gloo</PackageProjectUrl>
     <PackageIcon>MM Logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/MarcelMichau/Gloo</RepositoryUrl>
-    <Copyright>Marcel Michau © 2021</Copyright>
+    <Copyright>Marcel Michau © 2022</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

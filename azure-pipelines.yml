@@ -1,10 +1,5 @@
-# ASP.NET Core
-# Build and test ASP.NET Core projects targeting .NET Core.
-# Add steps that run tests, create a NuGet package, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
-- main
+  - main
 
 pool:
   vmImage: ubuntu-latest
@@ -13,18 +8,18 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: UseDotNet@2
-  displayName: "Install .NET Core SDK"
-  inputs:
-    packageType: "sdk"
-    useGlobalJson: true
-    
-- script: dotnet build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
-  displayName: 'dotnet build $(buildConfiguration)'
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core SDK'
+    inputs:
+      packageType: 'sdk'
+      useGlobalJson: true
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: '5ac0e6f5-4639-4cbb-b1f9-0003fb41c29f/ac6d79b6-d45a-4d1f-a7a2-450327d5ae39'
+  - script: dotnet build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
+    displayName: 'dotnet build $(buildConfiguration)'
+
+  - task: NuGetCommand@2
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: '5ac0e6f5-4639-4cbb-b1f9-0003fb41c29f/ac6d79b6-d45a-4d1f-a7a2-450327d5ae39'
